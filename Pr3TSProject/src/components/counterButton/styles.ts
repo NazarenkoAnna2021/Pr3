@@ -1,8 +1,4 @@
-import { StyleSheet, Dimensions } from 'react-native';
-
-const windowWidth = Dimensions.get('window').width;
-// const windowHeight = Dimensions.get('window').height;
-const size = 15 * windowWidth / 100;
+import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
     countArea: {
@@ -10,15 +6,15 @@ export const styles = StyleSheet.create({
       flexDirection: 'row',
       justifyContent:'space-around',
       alignItems: 'center',
-      marginBottom: windowWidth / 2,
-      width: windowWidth - 30
+      marginBottom: 60,
+      width: 60
     },
     countBtn: {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      height: size,
-      width: size,
+      height: 62,
+      width: 62,
       fontSize: 30
     },
     buttonText: {

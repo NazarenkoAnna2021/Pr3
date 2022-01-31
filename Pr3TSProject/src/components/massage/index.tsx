@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState, FC } from 'react';
 import { Text, View } from 'react-native';
-import { styles } from './styles';
 
 interface IProps {
     setInputValue: (value: string) => void;
