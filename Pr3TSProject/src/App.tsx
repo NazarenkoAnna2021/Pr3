@@ -4,9 +4,8 @@ import {
   SafeAreaView,
   StatusBar,
   StyleSheet,
-  Text
 } from 'react-native';
-import { CounterContainer } from './src/components/counterContainer';
+import { CounterContainer } from './components/counterContainer';
 
 const App = () => {
   return (

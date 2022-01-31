@@ -21,9 +21,6 @@ export const styles = StyleSheet.create({
       width: size,
       fontSize: 30
     },
-    output: {
-        fontSize: 100,
-    },
     buttonText: {
       fontSize: 50,
       textAlign: 'center'

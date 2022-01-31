@@ -1,55 +1,50 @@
-import React from 'react';
-import { View, TextInput } from 'react-native';
+import React, { FC, useEffect, useState } from 'react';
+import { View } from 'react-native';
 import { CountArea } from '../countArea';
-import { InputStap } from '../inputStap';
+import { InputStap } from '../inputStep';
 import { Massage } from '../massage';
-
 import { styles } from './styles';
 
-export class CounterContainer extends React.Component {
-    constructor(props: any) {
-        super(props);
-        this.state = {
-            counter: 0,
-            number: 1
-        };
-    }
+export const CounterContainer: FC = () => {
+    const [counter, setCounter] = useState<number>(0);
+    const [step, setStep] = useState<string | number>('1');
 
-    componentDidUpdate = (prevState) => {
-        if ((+this.state.counter % 5) === 0 && this.state.number === prevState.number) {
-            if (this.state.counter > prevState.counter) {
-                this.setState({ number: +this.state.number + 1 });
-            } else {
-                if (this.state.number > 1) {
-                    this.setState({ number: +this.state.number - 1 });
-                }
+    useEffect(() => {
+        setStep((prevStep) => {
+            if ((counter % 5) === 0 && step === prevStep) {
+                if
+                    return Number(step) + 1;
             }
+        })
+    }, [counter]);
+
+    const onChangeInputValue = (text: string): void => {
+        setStep(text);
+    }
+
+    const addNumber = (): void => {
+        if (counter < 20) {
+            setCounter(counter + Number(step));
         }
     }
 
-    onChangeInputValue = (text: string) => {
-        this.setState({ number: text });
-    }
-
-    addNumber = (): void => {
-        if (this.state.counter < 20) {
-            this.setState({ counter: this.state.counter + +this.state.number });
+    const minusNamber = (): void => {
+        if (counter > -20) {
+            setCounter(counter - Number(step));
         }
     }
 
-    minusNamber = (): void => {
-        if (this.state.counter > -20) {
-            this.setState({ counter: this.state.counter - +this.state.number });
+    const drawMassag = () => {
+        if (!step || step === '0' || isNaN(Number(step)) || Number(step) < -20 || Number(step) > 20) {
+            return (<Massage setInputValue={onChangeInputValue} />);
         }
     }
 
-    render = (): React.ReactNode => {
-        return (
-            <View style={styles.mainArea}>
-                {(!this.state.number || this.state.number === '0' || isNaN(this.state.number) || Number(this.state.number) < -20 || Number(this.state.number) > 20) && <Massage inputValue={this.onChangeInputValue} />}
-                <CountArea counter={this.state.counter} addNumber={this.addNumber} minusNamber={this.minusNamber} />
-                <InputStap value={this.state.number} onChangeText={this.onChangeInputValue} />
-            </View>
-        );
-    }
-};
+    return (
+        <View style={styles.mainArea}>
+            {drawMassag()}
+            <CountArea counter={counter} addNumber={addNumber} minusNamber={minusNamber} />
+            <InputStap value={step} changeText={onChangeInputValue} />
+        </View>
+    );
+}

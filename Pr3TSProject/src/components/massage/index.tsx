@@ -1,41 +1,32 @@
-import React, { FC } from 'react';
-import {
-    Text,
-    View
-} from 'react-native';
+import React, { useEffect, useRef, useState, FC } from 'react';
+import { Text, View } from 'react-native';
 import { styles } from './styles';
 
-export class Massage extends React.Component {
-    constructor(props: any) {
-        super(props);
-        this.state = {
-            time: 10
-        }
-        console.log(props);
-        this.timerId = React.createRef();
-    }
+interface IProps {
+    setInputValue: (value: string) => void;
+}
 
-    componentDidMount = () => {
-        this.timerId.current = setInterval(() =>
-            this.setState((prevState) => {
-                if (prevState.time > 0) return { time: prevState.time - 1 };
-                this.props.inputValue(1);
-                return 0;
-            }
-            ), 1000);
-    }
+export const Massage: FC<IProps> = ({ setInputValue }) => {
+    const [time, setTime] = useState<number>(10);
+    const timerId = useRef<number>(10);
 
-    componentWillUnmount() {
-        clearInterval(this.timerId.current);
-    }
+    useEffect(() => {
+        timerId.current = setInterval(() =>
+            setTime((prevTime) => {
+                if (prevTime === 0) {
+                    setInputValue('1');
+                }
+                return prevTime - 1;
+            }), 1000);
 
-    render = (): React.ReactNode => {
-        return (
-            <View style={styles.conteiner}>
-                <Text>
-                    Enter not null number, or step will become to 1 in {this.state.time} minutes
-                </Text>
-            </View>
-        );
-    }
+        return () => clearInterval(timerId.current);
+    }, []);
+
+    return (
+        <View>
+            <Text>
+                Enter not null number, or step will become to 1 in {time} seconds
+            </Text>
+        </View>
+    );
 }
