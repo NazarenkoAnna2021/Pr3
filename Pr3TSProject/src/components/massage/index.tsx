@@ -5,6 +5,8 @@ interface IProps {
     setInputValue: (value: string) => void;
 }
 
+const ONE_SECOND = 1000;
+
 export const Massage: FC<IProps> = ({ setInputValue }) => {
     const [time, setTime] = useState<number>(10);
     const timerId = useRef<number>(10);
@@ -16,7 +18,7 @@ export const Massage: FC<IProps> = ({ setInputValue }) => {
                     setInputValue('1');
                 }
                 return prevTime - 1;
-            }), 1000);
+            }), ONE_SECOND);
 
         return () => clearInterval(timerId.current);
     }, []);

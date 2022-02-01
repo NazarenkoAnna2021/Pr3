@@ -16,5 +16,5 @@ export const InputStap: FC<IProps> = ({ value, changeText }) => {
             keyboardType="numeric"
             onChangeText={changeText}
         />
-    )
+    );
 }

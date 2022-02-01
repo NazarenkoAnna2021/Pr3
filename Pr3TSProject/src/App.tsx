@@ -1,13 +1,9 @@
 
 import React from 'react';
-import {
-  SafeAreaView,
-  StatusBar,
-  StyleSheet,
-} from 'react-native';
+import { SafeAreaView, StatusBar, StyleSheet } from 'react-native';
 import { CounterContainer } from './components/counterContainer';
 
-const App = () => {
+export const App = () => {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor= 'red'/>
@@ -23,5 +19,3 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   }
 });
-
-export default App;
