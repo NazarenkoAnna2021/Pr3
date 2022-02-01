@@ -5,16 +5,16 @@ import { CounterButton } from '../counterButton';
 
 interface IProps {
     counter: number;
-    minusNamber: () => void;
+    minusNumber: () => void;
     addNumber: () => void;
 }
 
-export const CountArea:FC<IProps> = ({ counter, minusNamber, addNumber }) => {
+export const CountArea:FC<IProps> = ({ counter, minusNumber, addNumber }) => {
     return (
         <View style={styles.countArea}>
-            <CounterButton title={'❮'} pressFunction={minusNamber} />
+            <CounterButton title={'❮'} onPress={minusNumber} />
             <Text style={styles.output}>{counter}</Text>
-            <CounterButton title={'❯'} pressFunction={addNumber} />
+            <CounterButton title={'❯'} onPress={addNumber} />
         </View>
     );
 }

@@ -4,12 +4,12 @@ import { styles } from './styles';
 
 interface IProps {
   title: string;
-  pressFunction: () => void;
+  onPress: () => void;
 }
 
-export const CounterButton:FC<IProps> = ({ title, pressFunction }) => {
+export const CounterButton:FC<IProps> = ({ title, onPress }) => {
   return (
-    <TouchableOpacity onPress={pressFunction} style={styles.countBtn}>
+    <TouchableOpacity onPress={onPress} style={styles.countBtn} >
       <Text style={styles.buttonText}>
         {title}
       </Text>

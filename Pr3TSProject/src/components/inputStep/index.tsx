@@ -7,7 +7,7 @@ interface IProps {
     changeText: (text: string) => void;
 }
 
-export const InputStap: FC<IProps> = ({ value, changeText }) => {
+export const InputStep: FC<IProps> = ({ value, changeText }) => {
     return (
         <TextInput
             style={styles.numberInput}

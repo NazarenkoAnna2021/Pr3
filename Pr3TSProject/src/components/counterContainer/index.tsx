@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useRef, useState } from 'react';
 import { View } from 'react-native';
 import { CountArea } from '../countArea';
-import { InputStap } from '../inputStep';
+import { InputStep } from '../inputStep';
 import { Massage } from '../massage';
 import { styles } from './styles';
 
@@ -38,26 +38,21 @@ export const CounterContainer: FC = () => {
         }
     }
 
-    const minusNamber = (): void => {
+    const minusNumber = (): void => {
         if (counter > -20) {
             setCounter(counter - Number(step));
         }
     }
 
-    const isdrawMassag = ():boolean => {
-        if (!step || step === '0' || isNaN(Number(step)) || Number(step) < -20 || Number(step) > 20) {
-            return true;
-        }
-        else {
-            return false;
-        }
+    const isDrawMassage = ():boolean => {
+       return !step || step === '0' || isNaN(Number(step)) || Number(step) < -20 || Number(step) > 20;
     }
 
     return (
         <View style={styles.mainArea}>
-            {isdrawMassag() ?? <Massage setInputValue={onChangeInputValue} />}
-            <CountArea counter={counter} addNumber={addNumber} minusNamber={minusNamber} />
-            <InputStap value={step} changeText={onChangeInputValue} />
+            {isDrawMassage() ?? <Massage setInputValue={onChangeInputValue} />}
+            <CountArea counter={counter} addNumber={addNumber} minusNumber={minusNumber} />
+            <InputStep value={step} changeText={onChangeInputValue} />
         </View>
     );
 }
